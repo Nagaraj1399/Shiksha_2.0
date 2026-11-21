@@ -1,0 +1,6 @@
+{
+  "name": "Shiksha-Agent",
+  "description": "Empathetic bilingual Socratic student tutor and structured teacher aide for Indian state-board schools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

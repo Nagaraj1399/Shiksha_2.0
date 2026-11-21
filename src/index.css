@@ -1,0 +1,216 @@
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    /* Material 3 Pixel Tonal Surfaces - Light */
+    --m3-surface: #f8f9fc;
+    --m3-surface-container-low: #f2f4f8;
+    --m3-surface-container: #eaeef5;
+    --m3-surface-container-high: #e2e7f0;
+    --m3-on-surface: #1a1c1e;
+    --m3-on-surface-variant: #44474f;
+    --m3-outline: #c4c6d0;
+    --m3-primary: #0b57d0;
+    --m3-on-primary: #ffffff;
+    --m3-primary-container: #d3e3fd;
+    --m3-on-primary-container: #041e49;
+    --m3-secondary-container: #c2e7ff;
+    --m3-on-secondary-container: #001d35;
+    --m3-tertiary-container: #c4eed0;
+    --m3-on-tertiary-container: #072711;
+    --m3-error: #b3261e;
+    --m3-error-container: #f9dedc;
+    --m3-on-error-container: #410e0b;
+  }
+
+  .dark {
+    /* Material 3 Pixel Tonal Surfaces - Night */
+    --m3-surface: #111318;
+    --m3-surface-container-low: #191c22;
+    --m3-surface-container: #1f2229;
+    --m3-surface-container-high: #282b33;
+    --m3-on-surface: #e2e2e9;
+    --m3-on-surface-variant: #c4c6d0;
+    --m3-outline: #44474f;
+    --m3-primary: #a8c7fa;
+    --m3-on-primary: #062e6f;
+    --m3-primary-container: #0842a0;
+    --m3-on-primary-container: #d3e3fd;
+    --m3-secondary-container: #004a77;
+    --m3-on-secondary-container: #c2e7ff;
+    --m3-tertiary-container: #0f5223;
+    --m3-on-tertiary-container: #c4eed0;
+    --m3-error: #f2b8b5;
+    --m3-error-container: #8c1d18;
+    --m3-on-error-container: #f9dedc;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    font-size: 100%;
+  }
+
+  html[data-text-size='base'] {
+    font-size: 100%;
+  }
+
+  html[data-text-size='lg'] {
+    font-size: 112.5%;
+  }
+
+  html[data-text-size='xl'] {
+    font-size: 125%;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  summary:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--m3-primary);
+    outline-offset: 2px;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono-tabular {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Landing page teal hero gradient, 80px faint grid, and gentle motion utilities */
+.landing-hero-bg {
+  background: linear-gradient(135deg, #2f7f84 0%, #4a9a9e 100%);
+}
+
+.dark .landing-hero-bg {
+  background: linear-gradient(135deg, #123b3e 0%, #1b5559 100%);
+}
+
+.landing-hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+@keyframes landingFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes landingFloatChip {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.landing-fade-up {
+  animation: landingFadeUp 550ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.landing-fade-up-delayed {
+  animation: landingFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) 110ms both;
+}
+
+.landing-float-chip {
+  animation: landingFloatChip 6s ease-in-out infinite;
+}
+
+.landing-float-chip-delayed {
+  animation: landingFloatChip 6s ease-in-out 1.8s infinite;
+}
+
+.landing-float-chip-slow {
+  animation: landingFloatChip 6s ease-in-out 3.4s infinite;
+}
+
+/* Respect user motion preferences across animations, transitions, and smooth scrolling */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Printable Teacher Lesson Plans & Worksheets with Separate-Page Answer Key */
+@media print {
+  @page {
+    margin: 16mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-sheet-wrapper {
+    position: static !important;
+    inset: auto !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    overflow: visible !important;
+    max-height: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .print-sheet-body {
+    max-width: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .print-answer-key {
+    break-before: page;
+    page-break-before: always;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border-top: none !important;
+  }
+}
